@@ -1,10 +1,11 @@
-import _ from 'lodash';
+import join from 'lodash/join';
 
 function component () {
   var element = document.createElement('div');
 
   /* lodash is required for the next line to work */
-  element.innerHTML = _.join(['Hello','webpack'], ' ');
+  element.innerHTML = join(['Hello','webpack'], ' ');
+  element.innerHTML += " " + require("./content.js")
 
   return element;
 }
