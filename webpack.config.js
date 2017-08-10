@@ -8,6 +8,11 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			{ // Babel es6->es5
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: ["babel-loader"]
+			},
 			{
 				test: /\.css$/,
 				use: ["style-loader", "css-loader"]
