@@ -3,17 +3,19 @@ const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const dev = process.env.NODE_ENV === "dev";
 
-
 let config = {
 	entry: "./app/index.js",
-	watch: dev,
+	watch: dev, // watch if dev environment
+	devtool: dev ? "cheap-module-eval-source-map" : "source-map",
 	output: {
 		filename: "bundle.js",
-		path: path.resolve(__dirname, "dist")
+		path: path.resolve(__dirname, "dist"),
+		publicPath: "./dist/"
 	},
 	module: {
 		rules: [
-			{ // Babel es6->es5
+			{
+				// Babel es6->es5
 				test: /\.js$/,
 				exclude: /(node_modules)/,
 				use: ["babel-loader"]
@@ -28,13 +30,15 @@ let config = {
 			}
 		]
 	},
-	plugins: [
-		
-	]
+	plugins: []
 };
 
+// Minify if prod environment
 if (!dev) {
-	config.plugins.push(new UglifyJSPlugin())
+	config.plugins.push(new UglifyJSPlugin(
+		// allow sourcemap on production
+		{sourceMap:true}
+		));
 }
 
 module.exports = config;
