@@ -1,7 +1,7 @@
 # test_webpack
 
-Bundle webpack with : ./node_modules/.bin/webpack <source> <dest>
+Upgrade to webpack3 !!! https://medium.com/webpack/webpack-3-official-release-15fd2dd8f07b
 
-Use like : ./node_modules/.bin/webpack app/index.js dist/bundle.js
-
-
+Thank you :
+- webpack : https://webpack.js.org/
+- Grafikart : https://www.grafikart.fr/formations/webpack/
