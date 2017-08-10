@@ -1,7 +1,12 @@
 const path = require("path");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
-module.exports = {
+const dev = process.env.NODE_ENV === "dev";
+
+
+let config = {
 	entry: "./app/index.js",
+	watch: dev,
 	output: {
 		filename: "bundle.js",
 		path: path.resolve(__dirname, "dist")
@@ -22,5 +27,14 @@ module.exports = {
 				use: ["file-loader"]
 			}
 		]
-	}
+	},
+	plugins: [
+		
+	]
 };
+
+if (!dev) {
+	config.plugins.push(new UglifyJSPlugin())
+}
+
+module.exports = config;
